@@ -21,30 +21,31 @@ struct Selector: View {
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 22.5)
-                .fill(LinearGradient(gradient: Gradient(colors: [
-                                            Color(red: (mode == 0) ? 0 : convert(value: r), green: (mode == 1) ? 0 : convert(value: g), blue: (mode == 2) ? 0 : convert(value: b)),
-                                            Color(red: (mode == 0) ? 1 : convert(value: r), green: (mode == 1) ? 1 : convert(value: g), blue: (mode == 2) ? 1 : convert(value: b))]), startPoint: .leading, endPoint: .trailing))
+                .fill(LinearGradient(gradient: Gradient(colors: [gradient(m: 0), gradient(m: 1)]), startPoint: .leading, endPoint: .trailing))
                 .frame(maxWidth: .infinity, maxHeight: 45)
                 
             CustomButton()
-                .offset(x: CGFloat((((Int(value) ?? 0)*240)/255)-120))
+                .offset(x: setOffestValue())
                 .gesture(DragGesture(minimumDistance: 0)
                     .onChanged { value in
                         if abs(value.translation.width) < 0.1{
-                            self.lastOffset = CGFloat((((Int(self.value) ?? 0)*240)/255)-120)
+                            self.lastOffset = setOffestValue()
                         }
                         let sliderPos = max(-120, min(self.lastOffset + value.translation.width, 120))
-                        
                         self.value = String(Int(((sliderPos+120)*255)/240))
-                        self.offset = CGFloat((((Int(self.value) ?? 0)*240)/255)-120)
-                    }
-                
-                )
-                
+                        self.offset = setOffestValue()
+                    })
                 .animation(.spring())
         }
         
     }
+    func setOffestValue()-> CGFloat{
+        return CGFloat((((Int(self.value) ?? 0)*240)/255)-120)
+    }
+    func gradient(m: Double) -> Color{
+        Color(red: (mode == 0) ? m : convert(value: r), green: (mode == 1) ? m : convert(value: g), blue: (mode == 2) ? m : convert(value: b))
+    }
+    
     func convert(value: String)->Double{
         return (Double(value) ?? 0)/255
     }
@@ -55,9 +56,10 @@ struct CustomButton: View{
     var body: some View{
         ZStack{
             Circle()
-                .foregroundColor(.white)
+                .stroke(Color.white,lineWidth: 5)
+                .foregroundColor(.clear)
                 .frame(width: 40, height: 40)
-            Circle().frame(width: 35, height: 35)
+            
         }
     }
 }
