@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct PickerView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(fetchRequest: ColorItem.getAllColorItems()) var colorItems: FetchedResults<ColorItem>
+    
     @State var red: String = "0"
     @State var green: String = "0"
     @State var blue: String = "0"
     
+
     var body: some View {
         NavigationView{
             VStack(spacing: 15){
@@ -37,13 +42,31 @@ struct PickerView: View {
                 Spacer()
                 Divider()
                 HStack{
-                    Button(action: {}){
+                    Button(action: {
+                        let colorItem = ColorItem(context: self.managedObjectContext)
+                        colorItem.createdAt = Date()
+                        colorItem.r = red
+                        colorItem.g = green
+                        colorItem.b = blue
+                        
+                        print("r: \(Int16(self.red)!) g: \(Int16(self.green)!) b: \(Int16(self.blue)!)")
+                        do{
+                            try self.managedObjectContext.save()
+                        } catch{
+                            print(error)
+                        }
+                        
+                        
+                    }){
                         Image(systemName: "plus.circle.fill").font(.system(size: 30))
                     }
                     ScrollView(.horizontal, showsIndicators: false){
                         HStack(spacing: 15){
-                            ForEach((0...9), id: \.self){ i in
-                                Circle().frame(width: 30,height: 30)
+                            ForEach(self.colorItems){ item in
+                                Circle().frame(width: 30,height: 30).foregroundColor(Color(red:convert(value: item.r), green: convert(value: item.g), blue: convert(value: item.b)))
+                                    .onAppear(perform: {
+                                        print("r: \(item.r) g: \(item.g) b: \(item.b)")
+                                    })
                             }
                         }
                     }

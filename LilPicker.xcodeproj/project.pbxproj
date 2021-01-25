@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7AB2B38A25BF34C7001F2203 /* ColorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB2B38925BF34C7001F2203 /* ColorItem.swift */; };
 		7AC9D79C25BC94ED00D0D831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC9D79B25BC94ED00D0D831 /* AppDelegate.swift */; };
 		7AC9D79E25BC94ED00D0D831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC9D79D25BC94ED00D0D831 /* SceneDelegate.swift */; };
 		7AC9D7A025BC94ED00D0D831 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC9D79F25BC94ED00D0D831 /* ContentView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7AB2B38925BF34C7001F2203 /* ColorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorItem.swift; sourceTree = "<group>"; };
 		7AC9D79825BC94ED00D0D831 /* LilPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LilPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AC9D79B25BC94ED00D0D831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AC9D79D25BC94ED00D0D831 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7AB2B38825BF34BC001F2203 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7AB2B38925BF34C7001F2203 /* ColorItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7AC9D78F25BC94ED00D0D831 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +72,7 @@
 		7AC9D79A25BC94ED00D0D831 /* LilPicker */ = {
 			isa = PBXGroup;
 			children = (
+				7AB2B38825BF34BC001F2203 /* Model */,
 				7AC9D7B925BCA47000D0D831 /* Utils */,
 				7AC9D7B325BC950600D0D831 /* Views */,
 				7AC9D79B25BC94ED00D0D831 /* AppDelegate.swift */,
@@ -172,6 +183,7 @@
 			files = (
 				7AC9D79C25BC94ED00D0D831 /* AppDelegate.swift in Sources */,
 				7AC9D7A325BC94ED00D0D831 /* LilPicker.xcdatamodeld in Sources */,
+				7AB2B38A25BF34C7001F2203 /* ColorItem.swift in Sources */,
 				7AC9D7BB25BCA4A800D0D831 /* Selector.swift in Sources */,
 				7AC9D79E25BC94ED00D0D831 /* SceneDelegate.swift in Sources */,
 				7AC9D7B525BC952900D0D831 /* PickerView.swift in Sources */,
